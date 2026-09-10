@@ -1,74 +1,79 @@
-# 2. Chat Panel Exercises
+# 💬 2. Chat Panel Exercises
 
-Learn to ask useful testing questions, generate an API test with slash commands, and provide failure context.
+In these exercises you will:
+- Use slash commands as short hands for common prompts
+- Use Copilot to answer questions and fix broken test cases
+- Use Copilot to investigate which parts of the app need test automation the most
+- Use Copilot to implement new test cases
+- Add explicit contents to the prompt context
 
-## Prerequisites
+## ⌨️ Exercise 2.1: Essential Slash Commands
 
-Complete [Getting Started](01-getting-started.md). Keep the app running and the test environment activated.
+1. Make sure you have selected `Agent` in the agent selector menu (where other possible choices are Ask and Plan).
 
-Use **Ask** for investigation and **Agent** only for approved test edits. Attach files through **Add Context** or the `#` picker. If a slash command is unavailable, send the same prompt without the slash.
+1. Open the models selector in the chat panel. Browse through the different models: high reasoning models like GPT-6 Astra or Claude Opus models, or the simpler models like Claude Haiku 4.5 or GPT-5 mini. Hover with your mouse on the model names to compare their costs in AI credits. *Note:* it depends on your organization which models are available. For the following exercises, select one of the lightweight models such as Claude Haiku 4.5 or Auto, which is a good default selection.
 
-## Exercise 2.1: Asking Questions and Planning Initial Robot Coverage
+1. Type `/` in the chat. You should see a list of `slash commands` opening. Browse through the commands.
 
-At this stage there are no Robot Framework test cases in the app yet. The goal is to identify which user workflows should be covered first with Robot Framework, based on the application behavior visible in the source and UI. Do not treat unit tests as Robot coverage.
+1. Open smoke.robot file, select one of the test cases by activating its text with your mouse. Note that you can see in the chat text field the file that is open and the activated rows of text: Copilot will automatically insert these into the *prompt context*. Send the following prompt to Copilot:
 
-1. Select **Ask**. Attach the app entry points relevant to the Kanban flow, for example the [filtering logic](../apps/web/src/lib/board.ts) and any UI files that show how boards, columns, cards, labels, members, and filters are presented.
-2. Prompt:
+   ```
+   /explain
+   ```
+You should receive a thorough explanation of the test case.
+
+1. Issue `/clear` slash command to *archive the current chat session and to start a new one.*
+   ```
+   /clear
+   ```
+
+1. Make a deliberate error in the smoke.robot file (e.g. a typo in one of the key words). Select the code of the test case with the mouse and issue the following simple prompt:
+   ```
+   /fix
+   ```
+Review the proposed fix. If you're happy with it, tell Copilot to proceed with the fix:
+   ```
+   Implement the proposed fix
+   ```
+
+## 🤖 Exercise 2.2: Asking Questions and Planning Initial Robot Coverage
+
+The following exercises call for a model capable of slightly deaper reasoning. Select e.g. GPT-5.6 Terra/Sol or Claude Sonnet 5 in the model selector of the chat panel.
+
+1. Select **Ask** in the agent selector of the chat panel.
+
+1. Prompt:
    ```text
-   Explain the Kanban app's main user workflows to a tester and identify three
-   high-value Robot Framework scenarios that should be automated first.
-   Focus on end-to-end user-visible behavior, especially board interaction and
-   filtering. For each scenario, provide the workflow goal, source evidence,
-   suggested test data, user actions, expected result, and risk if untested.
-   Do not count unit tests as Robot coverage. Do not compare against existing
-   Robot tests unless you can show that they exist. Distinguish observed
-   implementation from approved requirements. Make no edits.
+   Identify three high-value scenarios in the Kanban application for which Robot Framework  test cases should be written first. Focus on end-to-end user-visible behavior, especially board interaction and filtering.
+   
+   For each scenario, provide the workflow goal, suggested test data, user actions, expected result, and risk if untested. Make no edits in the code or test cases. 
    ```
-3. Challenge one suggestion: `Show the source supporting this claim. Otherwise mark it as an assumption.` Check that claim in the UI.
-4. Ask Copilot to format the three reviewed scenarios as a small Markdown planning table. Place it in your test-side QA notes for later exercises.
+1. Select **Agent** in the agent selector of the chat panel.
 
-**Checkpoint:** Three concrete initial Robot Framework scenarios are supported by evidence from the current app behavior, without inventing existing Robot coverage or mixing in unit tests.
+1. Ask Copilot to implement one of the suggested test cases. Example:
 
-## Exercise 2.2: Essential Slash Commands
-
-1. Select **Agent**. Attach the [board route](../apps/server/src/routes/board.ts), [route registration](../apps/server/src/index.ts), and [shared types](../packages/shared/src/index.ts). Prompt:
-   ```text
-   /tests Create tests/robot/suites/api.robot using RequestsLibrary, not Vitest.
-   Add one read-only GET /api/board test with API_URL=http://localhost:5891.
-   Assert status 200, parse the JSON with library APIs, and verify the board
-   has name plus columns, cards, labels, and members collections of list type.
-   Do not assume seed names, IDs, or counts. Close sessions in teardown.
-   Do not edit application files. Explain the generated Robot assertions.
    ```
-2. Review the diff. The response is the board object itself, not nested under a `board` key. Run:
-   ```bash
-   python -m robot --outputdir tests/robot/results/api tests/robot/suites/api.robot
+   Implement a Robot Framework Browser end-to-end test for filtering Kanban cards by label according to your test case suggestion. Validate the new test after implementing it. Do not make any edits in the code base.
    ```
-3. Confirm **1 test, 1 passed, 0 failed** and inspect its report. Switch to **Ask**, select the request and assertions, and prompt:
-   ```text
-   /explain Explain these Robot steps and their likely failure messages.
-   Which incorrect responses could return 200 but still fail our assertions?
+
+## 🔍 Exercise 2.3: Adding Context to Diagnose Failures
+
+Switch back to a lightweight model for the following exercises.
+
+1. Use `#` to add files to the context window:
    ```
-4. Start a clean chat with `/clear` or the new-chat button. Reattach relevant files. Do not assume earlier context carries over.
-
-**Checkpoint:** A passing API test checks response content as well as status, and you can explain its assertions.
-
-## Exercise 2.3: Adding Context to Diagnose Failures
-
-1. In the API test only, deliberately change the expected status from `200` to `418`. Run it with a separate output directory:
-   ```bash
-   python -m robot --outputdir tests/robot/results/api-failure tests/robot/suites/api.robot
+   /explain #smoke.robot
    ```
-2. Select **Ask**. Attach the API test and **last terminal command** from the `#` picker, often named `#terminalLastCommand`. Prompt:
-   ```text
-   /fix Explain this failure before proposing edits. I deliberately changed
-   the expected status. Compare expected and actual with the board route.
-   Suggest the smallest test-only correction. Do not accept arbitrary statuses,
-   ignore errors, remove assertions, or change the application.
+
+1. Make a question about the official Robot Framework documentation:
    ```
-3. Select the failing keyword's output and add **terminal selection** context, often `#terminalSelection`. Ask `Does this excerpt show a setup error or an executed assertion failure? What evidence tells you?`
-4. Restore the correct expectation yourself, or approve that one edit in **Agent**. Rerun the API command from Exercise 2.2 and confirm it passes with content assertions intact.
+   Check in the lastest Robot Framework documentation if variable names are case-sensitive or not #web https://robotframework.org/robotframework/latest/RobotFrameworkUserGuide.html
+   ```
 
-**Checkpoint:** Copilot diagnosed an actual failure from explicit context, and you verified a narrow correction without modifying the app.
+1. Make a deliberate error in one of the test cases and run the tests in the terminal. Use Copilot to detect the problem by prompting:
 
-Optional: Repeat the diagnostic prompt in fresh chats with two available models and identical context. Compare accuracy and clarity. Choose a model based on evidence, not its name.
+   ```
+   Explain why the test cases failed #terminalLastCommand
+   ```
+
+1. Select a specific line in the terminal output and make a question about it using #terminalSelection chat variable.

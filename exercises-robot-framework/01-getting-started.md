@@ -1,6 +1,11 @@
 # 🚀 01. Getting Started Exercises (Robot Framework Edition)
 
-Learn to set up Robot Framework with Copilot, use inline completions, and ask questions about the Kanban app. No application programming is required.
+In these exercises you will:
+- Robot Framework with Copilot
+- Use inline completions
+- Ask questions about the playground application
+
+No application programming is required.
 
 ## ✅ Prerequisites
 
@@ -73,8 +78,6 @@ Note: The playground application must be running in a separate terminal for the 
    assertions. Give the rerun command and distinguish a dry run from real execution.
    ```
 
-**Checkpoint:** A real browser test passes before you continue. Reactivate this environment in each new test terminal.
-
 ## ✍️ Exercise 1.2: Test Inline Completion
 
 **Note:** Inline completions will not work if your IDE identifies the file as a plain text file. Either install the RobotCode extension (VS Code) or enable Copilot for plain text files in your IDE settings (in VS Code, open Settings and search for `github.copilot.enable`).
@@ -93,5 +96,3 @@ Note: The playground application must be running in a separate terminal for the 
    Explain why this test fails and suggest a fix. See #terminalLastCommand for the error message.
    ```
 The chat variable `#terminalLastCommand` appends the last command run in the terminal and its output to your prompt.
-
-**Checkpoint:** You verified an inline suggestion against the UI and executed it.
