@@ -6,24 +6,28 @@ Learn to ask useful testing questions, generate an API test with slash commands,
 
 Complete [Getting Started](01-getting-started.md). Keep the app running and the test environment activated.
 
-Use **Ask** for investigation and **Agent** only for approved test edits. Attach files through **Add Context** or the `#` picker. If a slash command is unavailable, send the same prompt without the slash command. Use the new-chat button instead of `/clear`.
+Use **Ask** for investigation and **Agent** only for approved test edits. Attach files through **Add Context** or the `#` picker. If a slash command is unavailable, send the same prompt without the slash.
 
-## Exercise 2.1: Asking Questions and Finding Coverage Gaps
+## Exercise 2.1: Asking Questions and Planning Initial Robot Coverage
 
-1. Select **Ask**. Attach your Robot smoke suite, [filtering logic](../apps/web/src/lib/board.ts), and [existing unit tests](../apps/web/src/lib/board.test.ts).
+At this stage there are no Robot Framework test cases in the app yet. The goal is to identify which user workflows should be covered first with Robot Framework, based on the application behavior visible in the source and UI. Do not treat unit tests as Robot coverage.
+
+1. Select **Ask**. Attach the app entry points relevant to the Kanban flow, for example the [filtering logic](../apps/web/src/lib/board.ts) and any UI files that show how boards, columns, cards, labels, members, and filters are presented.
 2. Prompt:
    ```text
-   Explain the Kanban app's main workflows to a tester and how to run our Robot
-   tests versus npm test. Compare existing Robot coverage with source behavior.
-   Identify three missing Robot scenarios, including filter boundary cases.
-   For each, give source evidence, test data, action, expected result, and risk.
-   Do not count Vitest tests as Robot coverage or claim unrun tests have passed.
-   Distinguish observed implementation from approved requirements. Make no edits.
+   Explain the Kanban app's main user workflows to a tester and identify three
+   high-value Robot Framework scenarios that should be automated first.
+   Focus on end-to-end user-visible behavior, especially board interaction and
+   filtering. For each scenario, provide the workflow goal, source evidence,
+   suggested test data, user actions, expected result, and risk if untested.
+   Do not count unit tests as Robot coverage. Do not compare against existing
+   Robot tests unless you can show that they exist. Distinguish observed
+   implementation from approved requirements. Make no edits.
    ```
-3. Challenge one suggestion: `Show the source or existing assertion supporting this claim. Otherwise mark it as an assumption.` Check that claim in the UI.
-4. Ask Copilot to format the three reviewed gaps as a small Markdown coverage table. Place it in your test-side QA notes for later exercises.
+3. Challenge one suggestion: `Show the source supporting this claim. Otherwise mark it as an assumption.` Check that claim in the UI.
+4. Ask Copilot to format the three reviewed scenarios as a small Markdown planning table. Place it in your test-side QA notes for later exercises.
 
-**Checkpoint:** Three concrete coverage gaps are supported by evidence, not invented features or a guessed coverage percentage.
+**Checkpoint:** Three concrete initial Robot Framework scenarios are supported by evidence from the current app behavior, without inventing existing Robot coverage or mixing in unit tests.
 
 ## Exercise 2.2: Essential Slash Commands
 
@@ -62,7 +66,7 @@ Use **Ask** for investigation and **Agent** only for approved test edits. Attach
    Suggest the smallest test-only correction. Do not accept arbitrary statuses,
    ignore errors, remove assertions, or change the application.
    ```
-3. Select the failing keyword's output and add **terminal selection** context, often `#terminalSelection`. Ask `Does this excerpt show a setup error or an executed assertion failure? What evidence tells you?` If the picker options are unavailable, paste the command and a short sanitized excerpt. Use **Problems** context for editor diagnostics, not runtime assertions.
+3. Select the failing keyword's output and add **terminal selection** context, often `#terminalSelection`. Ask `Does this excerpt show a setup error or an executed assertion failure? What evidence tells you?`
 4. Restore the correct expectation yourself, or approve that one edit in **Agent**. Rerun the API command from Exercise 2.2 and confirm it passes with content assertions intact.
 
 **Checkpoint:** Copilot diagnosed an actual failure from explicit context, and you verified a narrow correction without modifying the app.
