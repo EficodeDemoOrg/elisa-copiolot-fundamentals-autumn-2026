@@ -7,18 +7,20 @@ In these exercises you will:
 
 ## ✅ Prerequisites
 
-### VS Code Extensions
+### VS Code Setup
 
 VS Code ships with a built-in Copilot extension. To make sure it's enabled:
 1. Open the Extensions panel
 1. Search for GitHub Copilot Chat
 1. If it's not enabled, click on "Enable AI features"
 
-### Verify Your Subscription
 GitHub Copilot requires an active subscription. Verify your subscription:
 1. Open VS Code
 1. Look for the Copilot icon in the status bar (bottom right)
 1. Click on the icon. If it shows your subscription and AI credits, you're already authenticated. If you see the text "Sign in" next to the icon, click on it and proceed with authentication.
+
+### Visual Studio Setup
+For Visual Studio instructions, see the [official documentation](https://learn.microsoft.com/en-us/visualstudio/ide/visual-studio-github-copilot-install-and-states?view=visualstudio).
 
 ### Setting up the playground application
 Check out the [README](../README.md#-getting-started) at the project root for instructions on how to build and run the application.
