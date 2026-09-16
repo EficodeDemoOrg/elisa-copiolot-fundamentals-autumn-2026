@@ -5,8 +5,6 @@ In these exercises you will:
 - Test inline completions
 - Test the chat panel
 
-## ✅ Prerequisites
-
 ### VS Code Setup
 
 VS Code ships with a built-in Copilot extension. To make sure it's enabled:

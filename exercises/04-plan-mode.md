@@ -4,7 +4,17 @@ In this exercise, you will learn how to
 - Make an implementation plan for a feature
 - Use handoffs to hand of the implementation from Plan mode to Agent mode
 
-## ✅ Exercixe 4.1: Create and implement the plan
+## ✅ Prerequisites
+
+Select **Plan** in the Copilot chat panel. Select **Default Permissions** instead of using Autopilot.
+
+Consider which models would be suitable for creating and implementing plans.
+
+For plan creation, a model capable of deeper reasoning and greater context awareness is recommended, such Claude Opus 5. For a simpler code base such as this a less expensive model such as Claude Sonnet 5 can do the job.
+
+When implementing the plan – assuming the plan is thorough and detailed – a less sophisticated model can be used. For instance GPT-5.3-Codex or GPT-5.6 Terra could be good choices.
+
+## 📋 Exercixe 4.1: Create and implement the plan
 Let's suppose we want to implement a feature that enables adding checklists inside the cards.
 1. Select Plan mode in the mode selector
 1. Issue the following prompt:

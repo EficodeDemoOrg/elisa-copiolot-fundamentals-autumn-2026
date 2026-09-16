@@ -5,6 +5,10 @@ In these exercises, you will learn how to:
 - Use slash commands
 - Add context explicitly
 
+## ✅ Prerequisites
+
+For these exercises, it's recommended to use **Auto** model mode and Default permissions instead of Autopilot.
+
 ## 💬 Exercise 2.1: Asking basic questions
 Ask mode is great for learning about the project you're working on and its technologies. Its tool selection is restricted to reading and research, so it won't be able to make changes, even if it wanted to. However, it can propose code; it's up to you to explicitly include that code from the chat panel in the files.
 
