@@ -17,6 +17,8 @@ For plan creation, a model capable of deeper reasoning and greater context aware
 
 When implementing the plan – assuming the plan is thorough and detailed – a less sophisticated model can be used. For instance GPT-5.3-Codex or GPT-5.6 Terra could be good choices.
 
+For a thorough list of models and best use cases for them, see [the official documentation](https://docs.github.com/en/copilot/reference/ai-models/model-comparison). Check out the sections that discuss models for different types of tasks.
+
 ## 🧪 Exercise 3.1: Smoke test suite
 
 1. Ensure **Plan** is selected in the Copilot chat panel. Ask Copilot to inspect the application and the existing Robot Framework tests, then create a smoke test suite plan:
