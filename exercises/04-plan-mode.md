@@ -14,6 +14,8 @@ For plan creation, a model capable of deeper reasoning and greater context aware
 
 When implementing the plan – assuming the plan is thorough and detailed – a less sophisticated model can be used. For instance GPT-5.3-Codex or GPT-5.6 Terra could be good choices.
 
+For a thorough list of models and best use cases for them, see [the official documentation](https://docs.github.com/en/copilot/reference/ai-models/model-comparison). Check out the sections that discuss models for different types of tasks.
+
 ## 📋 Exercixe 4.1: Create and implement the plan
 Let's suppose we want to implement a feature that enables adding checklists inside the cards.
 1. Select Plan mode in the mode selector
