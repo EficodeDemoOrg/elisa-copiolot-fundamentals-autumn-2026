@@ -12,6 +12,8 @@ While doing the exercises, consider which models would be suitable in different 
 * For most everyday coding tasks, `Claude Sonet 5` or `GPT-5.6 Terra` are good options
 * For tasks that require heavy reasoning, `GPT-5.6 Sol` and `Claude Opus 5` can be good options, but use them cautiosly as they come with a cost.
 
+For a thorough list of models and best use cases for them, see [the official documentation](https://docs.github.com/en/copilot/reference/ai-models/model-comparison). Check out the sections that discuss models for different types of tasks.
+
 ## 🌗 Exercise 3.1: Implementation of dark / light modes
 1. Make sure the [development environment is running](../README.md#-getting-started) and open it in your browser at `http://localhost:5890/`. Familiarize yourself with the user interface to get an idea what kind of application you're developing.
 1. Open the Copilot chat panel and select the agent mode in the mode selector.
